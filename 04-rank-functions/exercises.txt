@@ -111,9 +111,30 @@ SELECT
   ROW_NUMBER() OVER(ORDER BY released DESC, updated DESC)
 FROM game;
 
+
+SELECT
+  name,
+  RANK() OVER (ORDER BY editor_rating)
+FROM game
+ORDER BY size DESC;
+
 /*
-9. 
+9. For each game find its name, genre, its rank by size. Order the games by date of release with newest games coming first.
 */
+
+SELECT
+  name,
+  genre,
+  RANK() OVER(ORDER BY size)
+FROM game
+ORDER BY released DESC;
+
+/*
+10. 
+*/
+
+
+
 
 
 
