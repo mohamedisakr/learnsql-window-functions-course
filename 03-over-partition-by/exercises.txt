@@ -79,7 +79,19 @@ FROM train t JOIN journey j
 	ON t.id = j.train_id;
 
 /*
-8. 
+8. For each journey, show its id, the production_year of the train on that journey, the number of journeys the train took and the number of journeys on the same route.
+*/
+
+SELECT
+  j.id,  
+  t.production_year,
+  COUNT(j.id)  OVER (),
+  COUNT(j.id)  OVER (PARTITION BY route_id)
+FROM train t JOIN journey j
+	ON t.id = j.train_id;
+
+/*
+
 */
 
 
