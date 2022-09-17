@@ -1,0 +1,95 @@
+/*
+Select all the information from table employee.
+
+The table presents all employees at some point in time. Each employee has a first and last name, a department in which they work, their salary and the number of full years they have worked in the company so far.
+*/
+SELECT *
+FROM employee
+
+/*
+Select all the information from table department.
+
+This table is extremely simple. It only contains two columns: id and name.
+*/
+SELECT *
+FROM department
+
+
+/*
+Select all the information from table purchase.
+
+This table keeps track of all items that are purchased by the departments. You can find the id of the purchase, the id of the department, the name of the item and the price paid for it.
+*/
+SELECT *
+FROM purchase
+
+
+/*
+Now it's your turn to write a window function. For each employee, find their first name, last name, salary and the sum of all salaries in the company.
+
+Note that the last column is an aggregated column, even though you're not using a GROUP BY.
+*/
+SELECT
+  first_name,
+  last_name,
+  salary,  
+  SUM(salary) OVER()
+FROM employee;
+
+
+/*
+For each item in the purchase table, select its name (column item), price and the average price of all items.
+*/
+SELECT
+  item,
+  price,
+  AVG(price) OVER()
+FROM purchase;
+
+
+/*
+For each employee in table employee, select first and last name, years_worked, average of years spent in the company by all employees, and the difference between the years_worked and the average as difference.
+*/
+SELECT
+  first_name,
+  last_name,
+  years_worked,
+  AVG(years_worked) OVER(),
+  years_worked - AVG(years_worked) OVER() as difference
+FROM employee;
+
+
+/*
+For all employees from department with department_id = 3, show their:
+
+first_name.
+last_name.
+salary.
+the difference of their salary to the average of all salaries in that department as difference
+*/
+SELECT
+  first_name,
+  last_name,
+  salary,
+  salary::numeric - AVG(salary) OVER() as difference
+FROM employee
+WHERE department_id = 3;
+
+
+
+/*
+For each employee that earns more than 4000, show their first_name, last_name, salary and the number of all employees who earn more than 4000.
+*/
+
+SELECT
+  first_name,
+  last_name,
+  salary,
+  COUNT(salary) OVER()
+FROM employee
+WHERE salary > 4000;
+
+
+
+
+
