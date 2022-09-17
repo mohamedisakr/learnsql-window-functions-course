@@ -93,7 +93,30 @@ SELECT
 FROM game;
 
 
+SELECT
+  name,
+  genre,
+  editor_rating,
+  RANK() OVER(ORDER BY released DESC, size ASC)
+FROM game;
+
 /*
-8. 
+8. We want to find games which were both recently released and recently updated. For each game, show name, date of release and last update date, as well as their rank: use ROW_NUMBER(), sort by release date and then by update date, both in the descending order.
 */
+
+SELECT
+  name,
+  released,
+  updated,
+  ROW_NUMBER() OVER(ORDER BY released DESC, updated DESC)
+FROM game;
+
+/*
+9. 
+*/
+
+
+
+
+
 
