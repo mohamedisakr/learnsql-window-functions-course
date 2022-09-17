@@ -130,8 +130,23 @@ FROM game
 ORDER BY released DESC;
 
 /*
-10. 
+10. For each purchase, find the name of the game, the price, and the date of the purchase. Give purchases consecutive numbers by date when the purchase happened, so that the latest purchase gets number 1. Order the result by editor's rating of the game.
 */
+
+SELECT
+  g.name,
+  p.price,
+  p.date,
+  ROW_NUMBER() OVER(ORDER BY p.date DESC)
+FROM purchase p JOIN game g
+	ON p.game_id = g.id
+ORDER BY g.editor_rating;
+
+/*
+11. 
+*/
+
+
 
 
 
