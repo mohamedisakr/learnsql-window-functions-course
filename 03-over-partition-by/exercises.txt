@@ -91,7 +91,17 @@ FROM train t JOIN journey j
 	ON t.id = j.train_id;
 
 /*
-
+9. For each ticket, show its id, price, date of its journey, the average price of tickets sold on that day and the number of tickets sold on that day. Exclude journeys with train_id = 5
 */
+
+SELECT t.id, t.price, j.date, AVG(t.price) OVER(PARTITION BY j.date), COUNT(t.id) OVER(PARTITION BY j.date)
+FROM ticket t JOIN journey j
+	ON t.journey_id = j.id
+WHERE j.train_id != 5
+
+/*
+10. 
+*/
+
 
 
