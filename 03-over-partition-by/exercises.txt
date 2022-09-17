@@ -107,8 +107,25 @@ SELECT t.id, t.price, t.price::numeric / SUM(t.price) OVER (PARTITION BY t.journ
 FROM ticket t 
 
 /*
-11. 
+11. Select all the information from the table employee.
+
+Each employee has a first and last name, a department where they work and a salary.
 */
+
+
+SELECT first_name,	last_name,	department,	salary
+FROM employee
+
+/*
+12. For each employee, show their first_name, last_name, department, salary, as well as the minimal and maximal salary in that department.
+*/
+
+SELECT first_name, last_name, department, salary, MIN(salary) OVER(PARTITION BY department), 
+		MAX(salary) OVER(PARTITION BY department)
+FROM employee  
+
+
+
 
 
 
