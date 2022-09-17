@@ -90,6 +90,63 @@ FROM employee
 WHERE salary > 4000;
 
 
+/*
+For each purchase with department_id = 3, show its:
+id.
+department_id.
+item.
+price.
+maximum price from all purchases in this department.
+the difference between the maximum price and the price.
+*/
+SELECT
+  id,
+  department_id,
+  item,
+  price,
+  MAX(price) OVER(PARTITION BY department_id),
+  MAX(price) OVER(PARTITION BY department_id) - price as difference 
+FROM purchase
+WHERE department_id = 3;
+
+
+/*
+For each purchase from any department, show its id, item, price, average price and the sum of all prices in that table.
+*/
+SELECT
+  id,
+  item,
+  price,
+  AVG(price) OVER(),
+  SUM(price) OVER()
+FROM purchase;
+
+/*
+Show the first_name, last_name and salary of every person who works in departments with id 1, 2 or 3, along with the average salary calculated in those three departments.
+*/
+
+SELECT
+  first_name,
+  last_name,
+  salary,
+  AVG(salary) OVER()
+FROM employee
+WHERE department_id IN (1, 2, 3);
+
+/*
+For each employee from department with id 1, 3 or 5, show their first name, last name, years_worked and the average number of years_worked across those departments.
+*/
+
+SELECT
+  first_name,
+  last_name,
+  years_worked,
+  AVG(years_worked) OVER()
+FROM employee
+WHERE department_id IN (1, 3, 5);
+
+
+
 
 
 
