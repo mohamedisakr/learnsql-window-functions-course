@@ -142,9 +142,29 @@ FROM purchase p JOIN game g
 	ON p.game_id = g.id
 ORDER BY g.editor_rating;
 
+SELECT
+  name,
+  genre,
+  editor_rating,
+  NTILE(3) OVER (ORDER BY editor_rating DESC)
+FROM game;
+
 /*
-11. 
+11. We want to divide games into 4 groups with regard to their size, with biggest games coming first. For each game, show its name, genre, size and the group it belongs to.
 */
+
+SELECT
+  name,
+  genre,
+  size,
+  NTILE(4) OVER (ORDER BY size DESC)
+FROM game;
+
+/*
+12. Split the games into 5 groups based on their date of last update. The most recently updated games should come first. For each of them, show the name, genre, date of update and the group they were assigned to. In the result, notice how many items the groups have (varying value).
+*/
+
+
 
 
 
