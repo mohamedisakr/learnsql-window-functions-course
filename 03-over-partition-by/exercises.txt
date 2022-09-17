@@ -28,7 +28,29 @@ Journey in our database is what passengers can buy tickets for. Each journey has
 Take a look at the first row: if you had wanted to go from Sheffield to Manchester with train 1 on 3 Jan 2016, you would have bought a ticket for journey with id 1.
 */
 
-## https://learnsql.com/course/postgresql-window-functions/over-partition-by/introduction/table-journey
+SELECT *
+FROM journey
+
+/*
+4. Finally, there are tickets. Each ticket has its own id, price, seat class (1st or 2nd class) and the journey id for which it was bought. Show all these columns.
+*/
+
+SELECT *
+FROM ticket
+
+
+/*
+5. Show the id of each journey, its date and the number of journeys that took place on that date.
+*/
+
+SELECT id, date, COUNT(*) OVER(PARTITION BY date)
+FROM journey
+
+/*
+6. 
+*/
+
+
 
 
 
