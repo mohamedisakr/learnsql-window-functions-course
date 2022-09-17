@@ -1,0 +1,35 @@
+SELECT id, first_name, last_name, age
+FROM person
+
+/*------------------*/
+
+SELECT id, owner_id, name, breed, age
+FROM dog
+
+/*------------------*/
+
+SELECT first_name, last_name, age
+FROM person
+ORDER BY age DESC
+
+/*------------------*/
+
+SELECT d.name, p.first_name, p.last_name
+FROM dog d JOIN person p ON d.owner_id = p.id
+
+/*------------------*/
+
+SELECT owner_id AS dog_owner_id, COUNT(owner_id)
+FROM dog 
+GROUP BY owner_id
+
+/*------------------*/
+
+SELECT breed, AVG(age) --AS average_age
+FROM dog 
+GROUP BY breed
+HAVING AVG(age) > 5
+
+/*------------------*/
+
+
