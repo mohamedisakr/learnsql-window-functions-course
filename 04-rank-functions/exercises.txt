@@ -1,0 +1,21 @@
+/*
+1. Select all the information from table game.
+
+Each game has an id and a name and is runnable on a specific platform. It is characterized by a specific genre, has an editor_rating and size in MB. The column released specifies when the game was released, whereas updated – when the game was last updated.
+*/
+
+SELECT id,	name,	platform,	genre,	editor_rating,	size,	released,	updated
+FROM game
+
+
+/*
+2. Select all the information from the purchase table.
+
+Each purchase of a game is stored in this table. The purchase has its own id, the id of the game, the price paid and the date of purchase.
+*/
+
+SELECT id,	game_id,	price,	date
+FROM purchase 
+
+## https://learnsql.com/course/postgresql-window-functions/rank-functions/ranking-functions/rank-over-order-by
+

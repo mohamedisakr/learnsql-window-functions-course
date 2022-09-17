@@ -1,0 +1,13 @@
+id	name	platform	genre	editor_rating	size	released	updated
+1	Go Bunny	iOS	action	5	101	2015-05-01	2015-07-13
+2	Fire Rescue	iOS	action	9	36	2015-07-30	2016-09-27
+3	Eternal Stone	iOS	adventure	10	125	2015-03-20	2015-10-25
+4	Froggy Adventure	iOS	adventure	7	127	2015-05-01	2015-07-02
+5	Speed Race	iOS	racing	7	127	2015-03-20	2015-07-25
+6	Monsters in Dungeon	Android	adventure	9	10	2015-12-01	2015-12-15
+7	Shoot in Time	Android	shooting	9	123	2015-12-01	2016-03-20
+8	Hit Brick	Android	action	4	54	2015-05-01	2016-01-05
+9	The Square	Android	action	4	86	2015-12-01	2016-03-16
+10	Duck Dash	Android	shooting	4	36	2015-07-30	2016-05-23
+11	Perfect Time	Windows Phone	action	6	55	2015-12-01	2016-01-07
+12	First Finish	Windows Phone	racing	7	44	2015-10-01	2016-02-20
