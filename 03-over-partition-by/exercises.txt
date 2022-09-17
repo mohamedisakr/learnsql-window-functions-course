@@ -46,11 +46,28 @@ FROM ticket
 SELECT id, date, COUNT(*) OVER(PARTITION BY date)
 FROM journey
 
+
+SELECT
+  id,
+  model,
+  max_speed,
+  COUNT(id) OVER (PARTITION BY max_speed)
+FROM train
+WHERE production_year != 2012;
+
+
 /*
-6. 
+6. Show id, model,first_class_places, second_class_places, and the number of trains of each model with more than 30 first class places and more than 180 second class places.
 */
 
+SELECT  id, model,first_class_places, second_class_places,
+  		COUNT(model) OVER (PARTITION BY model)
+FROM train
+WHERE first_class_places > 30 AND second_class_places > 180;
 
+/*
+7. 
+*/
 
 
 
