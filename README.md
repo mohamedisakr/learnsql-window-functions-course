@@ -1,4 +1,4 @@
 # LearnSQL.com Window Functions in PostgreSQL
 
 #### It is free course
-[title](https://learnsql.com/blog/free-postgresql-course-window-functions/)
+[Window Functions in PostgreSQL Course](https://learnsql.com/blog/free-postgresql-course-window-functions/)
