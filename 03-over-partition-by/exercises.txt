@@ -66,9 +66,20 @@ FROM train
 WHERE first_class_places > 30 AND second_class_places > 180;
 
 /*
-7. 
+7. Show the id of each journey, the date on which it took place, the model of the train that was used, the max_speed of that train and the highest max_speed from all the trains that ever went on the same route on the same day.
 */
 
+SELECT
+  j.id,
+  j.date,
+  t.model,
+  max_speed,
+  MAX(max_speed)  OVER (PARTITION BY route_id, date) 
+FROM train t JOIN journey j
+	ON t.id = j.train_id;
 
+/*
+8. 
+*/
 
 
