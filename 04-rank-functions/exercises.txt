@@ -60,5 +60,40 @@ SELECT
 FROM game;
 
 /*
-6. 
+6. For each game, show its name, genre and date of release. In the next three columns, show RANK(), DENSE_RANK() and ROW_NUMBER() sorted by the date of release.
 */
+
+SELECT
+  name,
+  genre,
+  released,
+  RANK() OVER(ORDER BY released), 
+  DENSE_RANK() OVER(ORDER BY released),
+  ROW_NUMBER() OVER(ORDER BY released)
+FROM game;
+
+
+SELECT
+  name,
+  platform,
+  editor_rating,
+  RANK() OVER(ORDER BY editor_rating DESC)
+FROM game;
+
+
+/*
+7. Let's use DENSE_RANK() to show the latest games from our studio. For each game, show its name, genre, date of release and DENSE_RANK() in the descending order.
+*/
+
+SELECT
+  name,
+  genre,
+  released,  
+  DENSE_RANK() OVER(ORDER BY released DESC)
+FROM game;
+
+
+/*
+8. 
+*/
+
