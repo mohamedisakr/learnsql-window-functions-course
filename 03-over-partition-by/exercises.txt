@@ -124,6 +124,13 @@ SELECT first_name, last_name, department, salary, MIN(salary) OVER(PARTITION BY 
 		MAX(salary) OVER(PARTITION BY department)
 FROM employee  
 
+/*
+13. SELECT first_name, last_name, department, salary, 
+		salary::numeric / SUM(salary) OVER(PARTITION BY department)::numeric --AS proportion 
+FROM employee  
+*/
+
+
 
 
 
