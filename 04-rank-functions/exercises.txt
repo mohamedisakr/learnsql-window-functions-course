@@ -25,7 +25,40 @@ FROM purchase
 SELECT name, genre, updated, RANK() OVER(ORDER BY updated)
 FROM game
 
+SELECT
+  name,
+  platform,
+  editor_rating,
+  DENSE_RANK() OVER(ORDER BY editor_rating)
+FROM game;
 
 /*
-4.  
+4. Use DENSE_RANK() and for each game, show name, size and the rank in terms of its size.
+*/
+
+SELECT
+  name,
+  size,
+  DENSE_RANK() OVER(ORDER BY size)
+FROM game;
+
+SELECT
+  name,
+  platform,
+  editor_rating,
+  ROW_NUMBER() OVER(ORDER BY editor_rating)
+FROM game;
+
+/*
+5. Use ROW_NUMBER() and for each game, show their name, date of release and the rank based on the date of release.
+*/
+
+SELECT
+  name,
+  released,
+  ROW_NUMBER() OVER(ORDER BY released)
+FROM game;
+
+/*
+6. 
 */
