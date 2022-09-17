@@ -17,5 +17,15 @@ Each purchase of a game is stored in this table. The purchase has its own id, th
 SELECT id,	game_id,	price,	date
 FROM purchase 
 
-## https://learnsql.com/course/postgresql-window-functions/rank-functions/ranking-functions/rank-over-order-by
 
+
+/*
+3. For each game, show name, genre, date of update and its rank. The rank should be created with RANK() and take into account the date of update.
+*/
+SELECT name, genre, updated, RANK() OVER(ORDER BY updated)
+FROM game
+
+
+/*
+4.  
+*/
