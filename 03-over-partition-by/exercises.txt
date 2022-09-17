@@ -1,0 +1,35 @@
+/*
+1. Select all the information from the table train.
+
+Each train has an id, model, maximum speed expressed in km/h, production year, the number of first class seats and second class seats. Pretty intuitive, right?
+*/
+
+SELECT *
+FROM train
+
+/*
+2. Select all the information from the table route.
+
+A route in our system is, in other words, a railroad connection between point A and B.
+
+Each route has its own id, its friendly name, the from_city and the to_city, as well as the distance between these two cities in kilometers.
+
+For simplicity, we assume that we only have intercity trains, i.e. there are no stations between from_city and to_city where the train could stop.
+*/
+
+SELECT id,	name,	from_city,	to_city,	distance
+FROM route
+
+/*
+3. Select all the information from the table journey.
+
+Journey in our database is what passengers can buy tickets for. Each journey has its own id, is operated by a certain train, goes via a certain route on a certain day.
+
+Take a look at the first row: if you had wanted to go from Sheffield to Manchester with train 1 on 3 Jan 2016, you would have bought a ticket for journey with id 1.
+*/
+
+## https://learnsql.com/course/postgresql-window-functions/over-partition-by/introduction/table-journey
+
+
+
+
