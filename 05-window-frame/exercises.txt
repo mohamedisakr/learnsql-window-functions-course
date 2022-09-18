@@ -348,12 +348,3 @@ SELECT
   AVG(amount) OVER(ORDER BY year RANGE CURRENT ROW),
   amount - AVG(amount) OVER(ORDER BY year RANGE CURRENT ROW)
 FROM revenue;
-
-/*
-22. 
-*/
-
-
-
-
-
