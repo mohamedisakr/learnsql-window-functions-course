@@ -107,8 +107,19 @@ FROM product
 
 
 /*
-8.
+8. Now, for each single_order, show its placed date, total_price, the average price calculated by taking 2 previous orders, the current order and 2 following orders (in terms of the placed date) and the ratio of the total_price to the average price calculated as before.
 */
+
+SELECT
+  placed,
+  total_price,
+  AVG(total_price) OVER(
+    ORDER BY placed
+    ROWS between 2 PRECEDING and 2 FOLLOWING),
+  total_price / AVG(total_price) OVER(
+    				ORDER BY placed
+    				ROWS between 2 PRECEDING and 2 FOLLOWING)
+FROM single_order
 
 
 /*
