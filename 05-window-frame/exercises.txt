@@ -257,8 +257,16 @@ FROM stock_change;
 
 
 /*
-15.
+15. Our finance department needs to calculate future cashflows for each date. Let's help them. In order to do that, we need to show each order: its id, placed date, total_price and the total sum of all prices of orders from the very same day or any later date.
 */
+
+SELECT
+  id,
+  placed,
+  total_price,
+  SUM(total_price) OVER(ORDER BY placed RANGE BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING)
+FROM single_order;
+
 
 
 /*
