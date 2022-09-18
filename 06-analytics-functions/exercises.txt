@@ -25,10 +25,22 @@ SELECT
   LEAD(name) OVER(ORDER BY opened)
 FROM website;
 
+-- /////////////////
+
+SELECT
+  name,
+  opened,
+  budget,
+  LEAD(budget) OVER(ORDER BY opened)
+FROM website;
 
 /*
-3. 
+3. For all the statistics of the website with id = 1, show the day, the number of users and the number of users on the next day.
 */
+
+SELECT day, users, LEAD(users) OVER(ORDER BY day)
+FROM statistics 
+WHERE website_id = 1
 
 
 /*
