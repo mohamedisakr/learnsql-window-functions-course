@@ -156,8 +156,15 @@ ORDER BY changed DESC;
 
 
 /*
-10.
+10. For each single_order, show its placed date, total_price and the average price from the current single_order and three previous orders (in terms of the placed date).
 */
+
+SELECT
+  placed,
+  total_price,
+  AVG(total_price) OVER(ORDER BY placed ROWS 3 PRECEDING)
+FROM single_order
+
 
 
 /*
