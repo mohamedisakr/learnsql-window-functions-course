@@ -287,8 +287,18 @@ FROM single_order;
 
 
 /*
-17.
+17. Just as in one of the previous exercises, we'll be looking for the running sum of single orders. For each order, show its id, placed date, total_price and the sum of all total prices. Sort the orders by the placed date, but do not specify any window frame.
+
+The sum of total_prices should be calculated as if you wrote RANGE UNBOUNDED PRECEDING.
 */
+
+SELECT
+  id,
+  placed,
+  total_price,
+  SUM(total_price) OVER(ORDER BY placed)
+FROM single_order;
+
 
 
 /*
