@@ -91,12 +91,19 @@ FROM order_position
 WHERE order_id = 5;
 
 
-## https://learnsql.com/course/postgresql-window-functions/window-frame/rows/remaining-sum
-
 
 /*
-7.
+7. For each product, show its id, name, introduced date and the count of products introduced up to that point.
 */
+
+SELECT
+  id,
+  name,
+  introduced,
+  COUNT(introduced) OVER(
+    ORDER BY introduced
+    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+FROM product
 
 
 /*
