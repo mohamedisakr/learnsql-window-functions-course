@@ -44,11 +44,35 @@ Each order_position is a single position in an order (you may think of it as a p
 SELECT id, product_id, order_id, quantity
 FROM order_position 
 
+-- ///////////////////////
+
+SELECT
+  id,
+  total_price,
+  SUM(total_price) OVER(ORDER BY placed ROWS UNBOUNDED PRECEDING)
+FROM single_order;
+
+-- ////////////////////////
+
+SELECT
+  id,
+  quantity,
+  changed,
+  SUM(quantity) OVER(
+    ORDER BY changed
+    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+FROM stock_change
 
 /*
-5.
+5. For each order, show its id, the placed date, and the third column which will count the number of orders up to the current order when sorted by the placed date.
 */
+SELECT
+  id,
+  placed,
+  COUNT(placed) OVER(ORDER BY placed ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+FROM single_order
 
+## https://learnsql.com/course/postgresql-window-functions/window-frame/rows/confusion
 
 /*
 6.
