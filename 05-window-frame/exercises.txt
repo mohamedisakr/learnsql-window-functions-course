@@ -122,9 +122,37 @@ SELECT
 FROM single_order
 
 
+-- The same rules applies for FOLLOWING. As a way of example, the following query:
+
+SELECT
+  id,
+  name,
+  introduced,
+  COUNT(id) OVER(ORDER BY introduced ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+FROM product;
+
+-- Can be rewritten to:
+
+SELECT
+  id,
+  name,
+  introduced,
+  COUNT(id) OVER(ORDER BY introduced ROWS UNBOUNDED PRECEDING)
+FROM product;
+
+
 /*
-9.
+9. You will now have a chance to practice abbreviations. Pick those stock changes which refer to product_id = 3. For each of them, show the id, changed date, quantity, and the running total, indicating the current stock status. Sort the rows by the changed date in the ascending order.
 */
+
+SELECT
+  id,
+  changed,
+  quantity,
+  SUM(quantity) OVER(ORDER BY changed ROWS UNBOUNDED PRECEDING)
+FROM stock_change
+WHERE product_id = 3
+ORDER BY changed DESC;
 
 
 /*
