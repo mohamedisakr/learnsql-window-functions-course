@@ -141,10 +141,24 @@ SELECT
 FROM statistics
 WHERE website_id = 3
 
+-- /////////////////
+
+SELECT
+  name,
+  opened,
+  LAG(opened,2,'2000-01-01') OVER(ORDER BY opened)
+FROM website;
 
 /*
-9.
+9. Modify the template from the previous exercise so that it shows -1.00 for rows with no revenue value 3 days before.
 */
+
+SELECT
+  day,
+  revenue,
+  LAG(revenue, 3, -1.00) OVER(ORDER BY day)
+FROM statistics
+WHERE website_id=3;
 
 
 /*
