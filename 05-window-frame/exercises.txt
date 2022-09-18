@@ -9,8 +9,20 @@ FROM product
 
 
 /*
-2.
+2. Select all the information from stock_change table.
+
+A single row in stock_change means that either a given number of products left the warehouse, or were delivered to the warehouse.
+
+You can find:
+
+the id of the change.
+the product_id.
+the quantity (positive values mean delivery, negative values mean the products left the warehouse).
+the changed when it happened.
 */
+
+SELECT id, product_id, quantity, changed
+FROM stock_change 
 
 
 /*
