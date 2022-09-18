@@ -338,6 +338,22 @@ ORDER BY year
 
 
 /*
-21. 
+21. For each row sorted by the year, show its department_id, year, amount, the average amount from all departments in the given year and the difference between the amount and the average amount.
 */
+
+SELECT
+  department_id,
+  year,
+  amount,
+  AVG(amount) OVER(ORDER BY year RANGE CURRENT ROW),
+  amount - AVG(amount) OVER(ORDER BY year RANGE CURRENT ROW)
+FROM revenue;
+
+/*
+22. 
+*/
+
+
+
+
 
