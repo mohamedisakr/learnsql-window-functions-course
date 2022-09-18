@@ -1,0 +1,8 @@
+id	name		introduced
+1	Frozen Yoghurt	2016-01-26
+2	Ice cubes	2016-04-10
+3	Ice cream	2016-01-05
+4	Skis		2016-04-09
+5	Snowboard	2016-02-01
+6	Sledge		2016-02-20
+7	Freezer		2016-01-16
