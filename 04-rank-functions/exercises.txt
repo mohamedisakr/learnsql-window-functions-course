@@ -164,9 +164,17 @@ FROM game;
 12. Split the games into 5 groups based on their date of last update. The most recently updated games should come first. For each of them, show the name, genre, date of update and the group they were assigned to. In the result, notice how many items the groups have (varying value).
 */
 
+SELECT
+  name,
+  genre,
+  updated,
+  NTILE(5) OVER (ORDER BY updated DESC)
+FROM game;
 
 
-
+/*
+13. 
+*/
 
 
 
