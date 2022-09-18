@@ -324,6 +324,20 @@ FROM revenue
 WHERE department_id = 2
 
 /*
-20. 
+20. For each row from department with id = 1, show its department_id, year, amount and the running average amount from all rows up to the current rows, sorted by the year.
+*/
+
+SELECT 
+    department_id,	
+    year,	
+    amount,
+    AVG(amount) OVER(ORDER BY year RANGE UNBOUNDED PRECEDING)
+FROM revenue
+WHERE department_id = 1
+ORDER BY year
+
+
+/*
+21. 
 */
 
