@@ -36,8 +36,13 @@ FROM single_order
 
 
 /*
-4.
+4. Select all the information from the order_position table.
+
+Each order_position is a single position in an order (you may think of it as a position in an invoice). It has its own id, the id of the product, id of the order, and the quantity of the product.
 */
+
+SELECT id, product_id, order_id, quantity
+FROM order_position 
 
 
 /*
