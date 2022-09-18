@@ -257,5 +257,19 @@ SELECT id,	name,	platform,	type,	average_rating,	downloads,	income
 FROM application 
 
 
+/*
+16. For each application, show its name, average_rating and its rank, with best rated apps coming first.
+*/
 
+  SELECT
+  	name,
+    average_rating,
+    RANK() OVER(ORDER BY average_rating DESC) AS rank
+  FROM application
+
+
+
+/*
+17. 
+*/
 
