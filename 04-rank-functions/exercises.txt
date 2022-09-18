@@ -270,6 +270,28 @@ FROM application
 
 
 /*
-17. 
+17. Find the application that ranked 3rd in terms of the greatest number of downloads. Show its name and the number of downloads.
 */
+
+WITH ranking AS (
+  SELECT
+  	name,
+    downloads,
+    RANK() OVER(ORDER BY downloads DESC) AS rank
+  FROM application
+)
+
+SELECT 
+	name,
+    downloads
+FROM ranking
+WHERE rank = 3;
+
+
+
+/*
+18. 
+*/
+
+
 
