@@ -269,9 +269,21 @@ FROM single_order;
 
 
 
+
 /*
-16.
+16. We'll start with not specifying an ORDER BY clause within OVER(...).
+
+For each single order, show its id, date when it was placed, the total price and the sum of all total prices.
+
+Note that the SUM computes the sum of all prices in the table, even though you did not specify the window frame.
 */
+
+SELECT
+  id,
+  placed,
+  total_price,
+  SUM(total_price) OVER()
+FROM single_order;
 
 
 /*
