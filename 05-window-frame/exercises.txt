@@ -26,8 +26,13 @@ FROM stock_change
 
 
 /*
-3.
+3. Select all the information from the single_order table.
+
+A pretty simple table, each order has an id, was placed on a specific day and has a given total_price.
 */
+
+SELECT id, placed, total_price
+FROM single_order 
 
 
 /*
