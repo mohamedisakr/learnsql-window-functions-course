@@ -72,11 +72,26 @@ SELECT
   COUNT(placed) OVER(ORDER BY placed ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
 FROM single_order
 
-## https://learnsql.com/course/postgresql-window-functions/window-frame/rows/confusion
+
 
 /*
-6.
+6. Warehouse workers always need to pick the products for orders by hand and one by one. 
+For positions with order_id = 5, calculate the remaining sum of all the products to pick. 
+For each position from that order, show its id, the id of the product, the quantity and the quantity of the remaining items (including the current row) when sorted by the id in the ascending order.
 */
+
+SELECT
+  id,
+  product_id,
+  quantity,
+  SUM(quantity) OVER(
+    ORDER BY id
+    ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING)
+FROM order_position
+WHERE order_id = 5;
+
+
+## https://learnsql.com/course/postgresql-window-functions/window-frame/rows/remaining-sum
 
 
 /*
