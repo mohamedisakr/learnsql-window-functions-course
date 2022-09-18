@@ -122,11 +122,24 @@ SELECT
 FROM statistics
 WHERE website_id = 3
 
+-- //////////////
 
+SELECT
+  name,
+  opened,
+  LAG(opened,2) OVER(ORDER BY opened)
+FROM website;
 
 /*
-8.
+8. Show the statistics for the website with id = 3: day, revenue and the revenue 3 days before.
 */
+
+SELECT
+  day,
+  revenue, 
+  LAG(revenue, 3) OVER(ORDER BY day)
+FROM statistics
+WHERE website_id = 3
 
 
 /*
