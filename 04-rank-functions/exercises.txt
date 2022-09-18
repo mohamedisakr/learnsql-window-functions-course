@@ -172,11 +172,61 @@ SELECT
 FROM game;
 
 
+WITH ranking AS (
+  SELECT
+    name,
+    RANK() OVER(ORDER BY editor_rating DESC) AS rank
+  FROM game
+)
+
+
+SELECT name
+FROM ranking
+WHERE rank = 2;
+
+--/////////////
+
+SELECT
+  name,
+  RANK() OVER(ORDER BY editor_rating DESC)
+FROM game;
+
+
+-- //////////////////////
+
+WITH ranking AS (
+  SELECT
+    name,
+    RANK() OVER(ORDER BY editor_rating DESC) AS rank
+  FROM game
+)
+
+SELECT name
+FROM ranking
+WHERE rank = 2;
+
+
 /*
-13. 
+13. Find the name, genre and size of the smallest game in our studio.
+
+Remember the steps:
+
+Create the ranking query so that the smallest game gets rank 1.
+Use WITH to select rows with rank 1.
 */
 
+WITH ranking AS (
+  SELECT
+    name,
+  	genre,
+  	size,
+    RANK() OVER(ORDER BY size ASC) AS rank
+  FROM game
+)
 
+SELECT name, genre,	size
+FROM ranking
+WHERE rank = 1;
 
 
 
