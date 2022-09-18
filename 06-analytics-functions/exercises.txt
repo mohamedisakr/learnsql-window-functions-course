@@ -62,14 +62,29 @@ FROM statistics
 WHERE website_id = 1
 
 
+-- ////////////
+SELECT
+  name,
+  opened,
+  LEAD(opened,2) OVER(ORDER BY opened)
+FROM website;
+
 /*
-5.
+5. Take the statistics for the website with id = 2 between 1 and 14 May 2016 and show the day, the number of users and the number of users 7 days later.
+
+Note that the last 7 rows don't have a value in the last column, because no rows '7 days from now' can be found for them.
 */
+
+SELECT day, users, LEAD(users, 7) OVER(ORDER BY day)
+FROM statistics 
+WHERE website_id = 2 AND day BETWEEN '2016-05-01' AND '2016-05-14'
 
 
 /*
 6.
 */
+
+
 
 
 /*
