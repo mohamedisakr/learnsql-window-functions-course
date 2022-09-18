@@ -158,16 +158,26 @@ SELECT
   revenue,
   LAG(revenue, 3, -1.00) OVER(ORDER BY day)
 FROM statistics
-WHERE website_id=3;
+WHERE website_id = 3;
 
 
 /*
-10.
+10. RPM (revenue per thousand impressions) is defined as the revenue divided by the number of impressions, times 1000.
+
+RPM = (revenue / number of impressions) * 1000
+For each statistics row with website_id = 2, show the day, the RPM and the RPM 7 days later. Rename the columns to RPM and RPM_7.
 */
 
+SELECT
+  day,
+  revenue / impressions * 1000 AS RPM,
+  LEAD(revenue / impressions, 7) OVER(ORDER BY day) * 1000 AS RPM_7
+FROM statistics
+WHERE website_id = 2;
+
 
 /*
-11.
+11. 
 */
 
 
