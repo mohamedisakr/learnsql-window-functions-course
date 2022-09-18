@@ -244,8 +244,16 @@ FROM stock_change
 
 
 /*
-14.
+14. For each stock_change, show its id, changed date, and the number of any stock changes that took place on the same day or any time earlier.
 */
+
+SELECT
+  id,
+  changed,
+  COUNT(id) OVER(ORDER BY changed RANGE UNBOUNDED PRECEDING)
+FROM stock_change;
+
+
 
 
 /*
