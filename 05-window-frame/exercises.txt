@@ -231,8 +231,16 @@ WHERE product_id = 7;
 
 
 /*
-13.
+13. For each stock_change, show id, product_id, quantity, changed date, and the total quantity change from all stock_change for that product.
 */
+
+SELECT
+  id,
+  product_id,
+  quantity,
+  changed,
+  SUM(quantity) OVER(ORDER BY product_id RANGE CURRENT ROW)
+FROM stock_change
 
 
 /*
