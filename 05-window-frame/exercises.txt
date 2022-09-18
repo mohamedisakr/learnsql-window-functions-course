@@ -166,11 +166,27 @@ SELECT
 FROM single_order
 
 
+-- ////////////////////
+
+SELECT
+  id,
+  placed,
+  total_price,
+  SUM(total_price) OVER(ORDER BY placed RANGE UNBOUNDED PRECEDING)
+FROM single_order;
+
+
 
 /*
-11.
+11. Modify the example so that it shows the average total_price for single days for each row.
 */
 
+SELECT
+  id,
+  placed,
+  total_price,
+  AVG(total_price) OVER(ORDER BY placed RANGE CURRENT ROW)
+FROM single_order;
 
 /*
 12.
