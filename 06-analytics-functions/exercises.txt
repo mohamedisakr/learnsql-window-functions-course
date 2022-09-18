@@ -79,17 +79,49 @@ SELECT day, users, LEAD(users, 7) OVER(ORDER BY day)
 FROM statistics 
 WHERE website_id = 2 AND day BETWEEN '2016-05-01' AND '2016-05-14'
 
+-- ////////////
+
+SELECT
+  name,
+  opened,
+  LEAD(opened,2,'2000-01-01') OVER(ORDER BY opened)
+FROM website;
+
 
 /*
-6.
+6. Modify the template based on the previous exercise so that it shows -1 instead of NULL if no LEAD value is found.
 */
 
+SELECT
+  day,
+  users,
+  LEAD(users,7, -1) OVER(ORDER BY day)
+FROM statistics
+WHERE website_id = 2
+  AND day BETWEEN '2016-05-01' AND '2016-05-14';
 
 
+-- //////////////
+
+SELECT
+  name,
+  opened,
+  LAG(name) OVER(ORDER BY opened)
+FROM website;
 
 /*
-7.
+7. Show the statistics for the website with id = 3: day, number of clicks that day and the number of clicks on the previous day.
+
+Note that there won't be any previous value for the first row.
 */
+
+SELECT
+  day,
+  clicks, 
+  LAG(clicks) OVER(ORDER BY day)
+FROM statistics
+WHERE website_id = 3
+
 
 
 /*
