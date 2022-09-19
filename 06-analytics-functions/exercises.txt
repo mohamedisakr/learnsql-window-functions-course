@@ -177,8 +177,20 @@ WHERE website_id = 2;
 
 
 /*
-11. 
+11. Let's define conversion rate as the number of clicks divided by the number of impressions, multiplied by 100 to obtain percentages.
+
+For website_id = 1 and dates between May 15 and May 31, 2016, show each statistics row: day, clicks, impressions, conversion rate (as the conversion column) and the conversion rate on the previous day (as the previous_conversion column).
 */
+
+
+SELECT
+  day,
+  clicks,
+  impressions,
+  clicks::numeric / impressions::numeric * 100 AS conversion,
+  LAG(clicks::numeric / impressions::numeric) OVER(ORDER BY day) * 100 AS previous_conversion 
+FROM statistics
+WHERE website_id = 1 AND day BETWEEN '2016-05-15' AND '2016-05-31';
 
 
 /*
