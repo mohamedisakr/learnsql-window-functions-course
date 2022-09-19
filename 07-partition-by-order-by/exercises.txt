@@ -90,8 +90,16 @@ WHERE day BETWEEN '2016-08-10' AND '2016-08-14';
 
 
 /*
-6. 
+6. Take the sales between August 1 and August 10, 2016. For each row, show the store_id, the day, the revenue on that day and quartile number (quartile means we divide the rows into four groups) based on the revenue of the given store in the descending order.
 */
+
+SELECT
+  store_id,
+  day,
+  revenue,
+  NTILE(4) OVER(PARTITION BY store_id ORDER BY revenue DESC)
+FROM sales
+WHERE day BETWEEN '2016-08-01' AND '2016-08-10';
 
 
 /*
