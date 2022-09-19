@@ -370,5 +370,13 @@ FROM statistics
 WHERE website_id = 3
 
 /*
-22. 
+22. Select all the information from the advertisement table.
 */
+
+SELECT price, day
+FROM advertisement;
+
+/*
+23. 
+*/
+
