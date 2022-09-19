@@ -192,10 +192,26 @@ SELECT
 FROM statistics
 WHERE website_id = 1 AND day BETWEEN '2016-05-15' AND '2016-05-31';
 
+-- ////////////
+
+SELECT
+  name,
+  opened,
+  budget,
+  FIRST_VALUE(budget) OVER(ORDER BY opened)
+FROM website;
+
 
 /*
-12.
+12. Show the statistics for website_id = 2. For each row, show the day, the number of users and the smallest number of users ever.
 */
+
+SELECT
+  day,
+  users,
+  FIRST_VALUE(users) OVER(ORDER BY users) 
+FROM statistics
+WHERE website_id = 2;
 
 
 /*
