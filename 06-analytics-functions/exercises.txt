@@ -215,8 +215,15 @@ WHERE website_id = 2;
 
 
 /*
-13.
+13. Show the statistics for website_id = 3. For each row, show the day, the revenue and the revenue on the first day.
 */
+
+SELECT
+  day,
+  revenue,
+  FIRST_VALUE(revenue) OVER(ORDER BY revenue) 
+FROM statistics
+WHERE website_id = 3;
 
 
 /*
