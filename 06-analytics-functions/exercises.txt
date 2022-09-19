@@ -377,6 +377,15 @@ SELECT price, day
 FROM advertisement;
 
 /*
-23. 
+23. For each row, show the day, the price on that day and the price on the next day.
 */
+
+SELECT day, price, LEAD(price) OVER()
+FROM advertisement;
+
+/*
+24. 
+*/
+
+
 
