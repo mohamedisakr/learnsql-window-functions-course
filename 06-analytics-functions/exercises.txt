@@ -339,3 +339,22 @@ SELECT
     LAST_VALUE(revenue) OVER(ORDER BY day) AS lowest_revenue
 FROM statistics
 WHERE day = '2016-05-14'
+
+/*
+20. Take the statistics for website_id = 1. For each row, show the day, the number of clicks on that day and the median of clicks in May 2016 (calculated as the 16th value of all 31 values in the column clicks when sorted by the number of clicks).
+*/
+
+SELECT 
+	day,
+	clicks,
+	NTH_VALUE(clicks, 16) OVER(
+    	ORDER BY clicks 
+    	ROWS BETWEEN UNBOUNDED PRECEDING
+      	AND UNBOUNDED FOLLOWING)
+FROM statistics
+WHERE website_id = 1 AND day BETWEEN '2016-05-01' AND '2016-05-31'
+ORDER BY clicks
+
+/*
+21. 
+*/
