@@ -9,8 +9,13 @@ FROM store
 
 
 /*
-2. 
+2. Select all the information from the sales table.
+
+In this table, the sales results are gathered for each store from the period between August 1 and August 14 2016. You can find the id of the store, the date, and three important values: the total revenue on that day, the number of transactions and the number of customers who entered the store (but not necessarily bought anything).
 */
+
+SELECT store_id, day, revenue, transactions, customers
+FROM sales;
 
 
 /*
