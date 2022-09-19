@@ -18,9 +18,27 @@ SELECT store_id, day, revenue, transactions, customers
 FROM sales;
 
 
+-- ////////////
+
+SELECT
+  country,
+  city,
+  rating,
+  AVG(rating) OVER(PARTITION BY country)
+FROM store;
+
+
 /*
-3. 
+3. For each sales row, show the store_id, day, revenue on that day and the average revenue in that store.
 */
+
+SELECT
+  store_id,
+  day,
+  revenue,
+  AVG(revenue) OVER(PARTITION BY store_id)
+FROM sales;
+
 
 
 /*
