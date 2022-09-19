@@ -384,8 +384,18 @@ SELECT day, price, LEAD(price) OVER()
 FROM advertisement;
 
 /*
-24. 
+24. For each row, show the day, the price on that day, the price 7 days earlier and the difference between these two values.
 */
 
+SELECT 
+	day, 
+    price, 
+    LAG(price, 7) OVER(), 
+    price - LAG(price, 7) OVER()
+FROM advertisement;
+
+/*
+25. 
+*/
 
 
