@@ -101,10 +101,43 @@ SELECT
 FROM sales
 WHERE day BETWEEN '2016-08-01' AND '2016-08-10';
 
+-- ////////////////
+-- The CTE in the parentheses creates a separate ranking of stores in each country based on their rating. 
+-- In the outer query, we simply return the rows with the right rank. As a result, we'll see the best store in each country.
+WITH ranking AS (
+  SELECT
+    country,
+    city,
+    RANK() OVER(PARTITION BY country ORDER BY rating DESC) AS rank
+  FROM store
+)
+
+SELECT
+  country,
+  city
+FROM ranking
+WHERE rank = 1;
+
 
 /*
-7. 
+7. For each store, show a row with three columns: store_id, the revenue on the best day in that store in terms of the revenue and the day when that best revenue was achieved.
 */
+
+WITH ranking AS (
+  SELECT
+      store_id,
+      day,
+      revenue,
+      RANK() OVER(PARTITION BY store_id ORDER BY revenue DESC) AS rank
+  FROM sales
+)
+
+SELECT
+  store_id,
+  revenue,
+  day
+FROM ranking
+WHERE rank = 1;
 
 
 /*
