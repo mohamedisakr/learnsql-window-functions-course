@@ -42,8 +42,17 @@ FROM sales;
 
 
 /*
-4. 
+4. For each sales row between August 1 and August 7, 2016, show the store_id, day, number of transactions, the total number of transactions on that day in any store and the ratio of the two last columns shown as percentage rounded to integer values.
 */
+
+SELECT
+  store_id,
+  day,
+  transactions,
+  SUM(transactions) OVER(PARTITION BY day),
+  ROUND(transactions::numeric / SUM(transactions) OVER(PARTITION BY day) * 100) 
+FROM sales
+WHERE day BETWEEN '2016-08-01' AND '2016-08-07';
 
 
 /*
