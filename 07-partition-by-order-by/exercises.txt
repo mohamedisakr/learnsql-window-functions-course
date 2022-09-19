@@ -154,8 +154,24 @@ WHERE day BETWEEN '2016-08-01' AND '2016-08-03'
 
 
 /*
-9. 
+9. For each day of the sales statistics, show the day, the store_id of the best store in terms of the revenue on that day, and that revenue.
 */
+
+WITH ranking AS (
+  SELECT
+  	day,
+      	store_id,
+  	ROW_NUMBER() OVER(PARTITION BY day ORDER BY revenue DESC) rank,
+      	revenue
+  FROM sales
+)
+
+SELECT 
+	day,
+	store_id,
+    	revenue
+FROM ranking
+WHERE rank = 1
 
 
 /*
