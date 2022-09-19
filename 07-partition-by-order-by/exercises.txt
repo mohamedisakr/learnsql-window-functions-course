@@ -55,9 +55,38 @@ FROM sales
 WHERE day BETWEEN '2016-08-01' AND '2016-08-07';
 
 
+--///////////
+-- the position of each store in the global network based on their ratings
+SELECT
+  id,
+  country,
+  city,
+  rating,
+  RANK() OVER(ORDER BY rating DESC)
+FROM store;
+
+
+-- // we can add PARTITION BY to calculate the positions independently for each country:
+SELECT
+  id,
+  country,
+  city,
+  rating,
+  RANK() OVER(PARTITION BY country ORDER BY rating DESC)
+FROM store;
+
+
 /*
-5. 
+5. Take into account the period between August 10 and August 14, 2016. For each row of sales, show the following information: store_id, day, number of customers and the rank based on the number of customers in the particular store (in descending order).
 */
+
+SELECT
+  store_id,
+  day,
+  customers,
+  RANK() OVER(PARTITION BY store_id ORDER BY customers DESC)
+FROM sales
+WHERE day BETWEEN '2016-08-10' AND '2016-08-14';
 
 
 /*
