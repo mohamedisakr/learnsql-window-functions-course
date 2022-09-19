@@ -1,0 +1,11 @@
+id	country	city		opening_day	rating
+1	Spain	Madrid		2014-05-30	5
+2	Spain	Barcelona	2015-07-28	3
+3	Spain	Valencia	2014-12-13	2
+4	France	Paris		2014-12-05	5
+5	France	Lyon		2014-09-24	3
+6	France	Nice		2014-03-15	2
+7	France	Bordeaux	2015-07-29	1
+8	Germany	Berlin		2014-12-15	3
+9	Germany	Hamburg		2015-06-12	3
+10	Germany	Frankfurt	2015-03-14	4
