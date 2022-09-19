@@ -327,5 +327,15 @@ WHERE website_id = 2 AND day BETWEEN '2016-05-15' AND '2016-05-31';
 
 
 /*
-19.
+19. Let's run some cross-website statistics now. Take the day May 14, 2016 and for each row, show: website_id, revenue on that day, the highest revenue from any website on that day (AS highest_revenue and the lowest revenue from any website on that day (as lowest_revenue).
 */
+
+SELECT 
+	website_id,
+	revenue,
+	FIRST_VALUE(revenue) OVER(ORDER BY day 
+                              ROWS BETWEEN UNBOUNDED PRECEDING
+      							AND UNBOUNDED FOLLOWING) AS highest_revenue,
+    LAST_VALUE(revenue) OVER(ORDER BY day) AS lowest_revenue
+FROM statistics
+WHERE day = '2016-05-14'
