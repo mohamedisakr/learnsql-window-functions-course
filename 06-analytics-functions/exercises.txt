@@ -281,8 +281,22 @@ WHERE website_id = 1;
 
 
 /*
-17.
+17. For each statistics rows with website_id = 1, show the day, the number of users, the number of users on the last day and the difference between these two values.
 */
+
+SELECT
+  day,
+  users,
+  LAST_VALUE(users) OVER(
+    ORDER BY day
+    ROWS BETWEEN UNBOUNDED PRECEDING
+      AND UNBOUNDED FOLLOWING),
+    users - LAST_VALUE(users) OVER(
+    			ORDER BY day
+    			ROWS BETWEEN UNBOUNDED PRECEDING
+      			AND UNBOUNDED FOLLOWING)
+FROM statistics
+WHERE website_id = 1;
 
 
 /*
