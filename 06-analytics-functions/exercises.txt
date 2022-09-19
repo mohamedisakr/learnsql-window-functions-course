@@ -395,7 +395,14 @@ SELECT
 FROM advertisement;
 
 /*
-25. 
+25. For each row, show the day, the price on that day, the highest price ever (column name highest_price) and the lowest price ever (column name lowest_price).
 */
 
 
+SELECT 
+	day, 
+    price, 
+    LAST_VALUE(price) OVER(ORDER BY price ROWS BETWEEN UNBOUNDED PRECEDING
+      						AND UNBOUNDED FOLLOWING) AS highest_price, 
+    FIRST_VALUE(price) OVER(ORDER BY price)  AS lowest_price
+FROM advertisement;
