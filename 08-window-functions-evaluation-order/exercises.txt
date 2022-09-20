@@ -316,74 +316,35 @@ GROUP BY bucket
 
 
 /*
-14. 
+14. Exercise 2
+For each author show:
+
+author_id.
+the number of books published by this author (name the column number_of_books).
+the rank of the author based on the number of published books in descending order.
 */
 
+SELECT
+  author_id,
+  COUNT(author_id) AS number_of_books,
+  RANK() OVER(ORDER BY COUNT(author_id) DESC)
+FROM book
+GROUP BY author_id;
 
 
 /*
-15. 
+15. Exercise 3
+For each year in which books were published, show the following columns:
+
+publish_year.
+the number of books published that year.
+the number of books published in the previous year.
 */
 
-
-
-/*
-16. 
-*/
-
-
-
-/*
-17. 
-*/
-
-
-
-/*
-18. 
-*/
-
-
-
-/*
-19. 
-*/
-
-
-
-/*
-20. 
-*/
-
-
-
-/*
-21. 
-*/
-
-
-
-/*
-22. 
-*/
-
-
-
-/*
-23. 
-*/
-
-
-
-/*
-24. 
-*/
-
-
-
-/*
-25. 
-*/
-
-
-
+SELECT
+  publish_year,
+  COUNT(publish_year),
+  LAG(COUNT(publish_year)) OVER(ORDER BY publish_year)
+FROM book
+GROUP BY publish_year
+ORDER BY publish_year
