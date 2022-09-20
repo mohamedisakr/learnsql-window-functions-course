@@ -299,8 +299,16 @@ FROM sales
 WHERE day BETWEEN '2016-08-01' AND '2016-08-03'
 
 /*
-16. 
+16. For each row of the sales figures, show the following information: store_id, day, revenue, revenue a week before and the ratio of revenue today to the revenue a week before expressed in percentage with 2 decimal places.
 */
+
+SELECT
+  store_id,
+  day,
+  revenue,
+  LAG(revenue, 7) OVER(PARTITION BY store_id ORDER BY day),
+  ROUND(revenue / LAG(revenue, 7) OVER(PARTITION BY store_id ORDER BY day) * 100, 2)
+FROM sales
 
 
 /*
