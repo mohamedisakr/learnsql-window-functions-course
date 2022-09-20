@@ -201,15 +201,28 @@ GROUP BY category_id
 
 
 /*
-8. 
+8. Now, group the auctions based on the category. Show category_id, the sum of final prices for auctions from this category and a ranking based on that sum, with the highest sum coming first.
 */
+
+SELECT
+  category_id,
+  SUM(final_price),
+  RANK() OVER(ORDER BY SUM(final_price) DESC)
+FROM auction
+GROUP BY category_id;
 
 
 
 /*
-9. 
+9. Group the auctions based on the day they ended and show the following columns: ended, the average number of views from auctions on that day and the ranking based on that average (the highest average should get the rank of 1).
 */
 
+SELECT
+  ended,
+  AVG(views),
+  RANK() OVER(ORDER BY AVG(views) DESC)
+FROM auction
+GROUP BY ended;
 
 
 /*
