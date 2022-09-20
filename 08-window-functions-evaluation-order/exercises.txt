@@ -165,10 +165,27 @@ FROM auction
 ORDER BY NTILE(4) OVER(ORDER BY views DESC);
 
 
+-- ////////////////////
+
+SELECT 
+  category_id, 
+  MAX(final_price) AS max_final, 
+  AVG(MAX(final_price)) OVER() 
+FROM auction 
+GROUP BY category_id
+
+
+
 /*
-6. 
+6. Group the auctions by the country. Show the country, the minimal number of participants in an auction and the average minimal number of participants across all countries.
 */
 
+SELECT 
+  country, 
+  MIN(participants), 
+  AVG(MIN(participants)) OVER() 
+FROM auction 
+GROUP BY country
 
 
 /*
