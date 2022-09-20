@@ -49,8 +49,13 @@ FROM subscription;
 
 
 /*
-6. 
+6. Select all the information from the giftcard table.
+
+The last thing you can purchase are giftcards for someone else. Each giftcard has an id, amount_worth (30, 50 or 100 dollars to spend in our store), customer_id, payment_date and payment_amount.
 */
+
+SELECT id, amount_worth, customer_id, payment_date, payment_amount
+FROM giftcard;
 
 
 
