@@ -9,14 +9,20 @@ FROM customer;
 
 
 /*
-2. 
+2. Select all the information from the movie table.
+
+Movies in our system have their ids and titles, of course. Then, there is the year of release, the genre of the movie and the rating by the editors of the store (0-10).
 */
 
+SELECT id, title, release_year, genre, editor_rating
+FROM movie
 
 
 /*
 3. 
 */
+
+## https://learnsql.com/course/postgresql-window-functions/practice-field/introduction/table-review
 
 
 
