@@ -196,10 +196,33 @@ SELECT
 FROM ranking
 WHERE rank = 1
 
+-- SELECT
+  id,
+  country,
+  city,
+  opening_day,
+  rating,
+  MAX(rating) OVER(
+    PARTITION BY country
+    ORDER BY opening_day
+    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+FROM store;
+
 
 /*
-11. 
+11. Show sales statistics between August 1 and August 7, 2016. For each row, show store_id, day, revenue and the best revenue in the respective store up to that date.
 */
+
+SELECT
+      store_id,
+      day,
+      revenue,
+      MAX(revenue) OVER(
+    	PARTITION BY store_id
+    	ORDER BY day
+    	ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+FROM sales
+WHERE day BETWEEN '2016-08-01' AND '2016-08-07'
 
 
 /*
