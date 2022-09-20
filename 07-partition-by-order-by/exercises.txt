@@ -372,8 +372,16 @@ FROM repairs;
 
 
 /*
-21. 
+21. For each phone, show the following information: phone, day, the number of paid repairs, the number of paid repairs on the previous day and the difference between these two values.
 */
+
+SELECT
+  phone,
+  day,
+  paid_repairs,
+  LAG(paid_repairs, 1) OVER(PARTITION BY phone ORDER BY day),
+  paid_repairs - LAG(paid_repairs, 1) OVER(PARTITION BY phone ORDER BY day)
+FROM repairs;
 
 
 /*
