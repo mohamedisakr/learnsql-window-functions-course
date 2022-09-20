@@ -19,11 +19,13 @@ FROM movie
 
 
 /*
-3. 
+3. Select all the information from the review table.
+
+Customers can rate movies, too! This is done via reviews. Each review has an id, a rating (0-10), the customer_id and the movie_id, of course.
 */
 
-## https://learnsql.com/course/postgresql-window-functions/practice-field/introduction/table-review
-
+SELECT id, rating, customer_id, movie_id
+FROM review 
 
 
 /*
