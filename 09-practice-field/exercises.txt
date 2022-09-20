@@ -29,9 +29,13 @@ FROM review
 
 
 /*
-4. 
+4. Select all the information from the single_rental table.
+
+Now, let's get down to business. The first possibility in our store is to rent a single movie for a certain period of time. Each rental has an id, rental_date (when the rent starts), rental_period (in days), the platform (desktop, mobile or tablet), customer_id, movie_id, payment_date (you can pay a few day after you rent) and the payment_amount, or the price.
 */
 
+SELECT id, rental_date, rental_period, platform, customer_id, movie_id, payment_date, payment_amount
+FROM single_rental;
 
 
 /*
