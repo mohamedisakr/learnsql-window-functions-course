@@ -112,9 +112,16 @@ FROM movie;
 
 
 /*
-11. 
+11. For each distinctive movie, show the title, the average customer rating for that movie (as the avg_movie_rating column), the average customer rating for the entire genre (as the avg_genre_rating column), and the average customer rating for all movies (as the avg_rating column).
 */
 
+SELECT
+  distinct m.title, 
+  AVG(r.rating) OVER(PARTITION BY r.movie_id) AS avg_movie_rating,
+  AVG(r.rating) OVER(PARTITION BY m.genre) AS avg_genre_rating ,
+  AVG(r.rating) OVER() AS avg_rating     
+FROM movie m JOIN review r 
+	ON m.id = r.movie_id
 
 
 /*
