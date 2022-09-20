@@ -67,15 +67,45 @@ SELECT
   	id,
     	country,
   	views 
-FROM cTE
+FROM cte
 WHERE views < avg_views
 
+-- ///////////////////
+SELECT 
+  country, 
+  AVG(final_price) 
+FROM auction 
+GROUP BY country 
+HAVING AVG(final_price) > AVG(final_price) OVER ();
 
 
 /*
-3. 
+3. Again, we would like to show those countries (country name and average final price) that have the average final price higher than the average price from all over the world. Correct the query by using a subquery
 */
 
+SELECT
+  country,
+  AVG(final_price) 
+FROM auction 
+GROUP BY country 
+HAVING AVG(final_price) > (SELECT AVG(final_price) FROM auction);
+
+-- /// with cte not working 
+WITH cte AS
+(
+	SELECT 
+  		country, 
+  		AVG(final_price) OVER (PARTITION BY country ORDER BY final_price) avg_final_price,
+  		AVG(final_price) OVER () avg_world_price
+	FROM auction 
+	--GROUP BY country, final_price
+)
+
+SELECT 
+  country, 
+  avg_final_price
+FROM cte 
+WHERE avg_final_price > avg_world_price
 
 
 /*
