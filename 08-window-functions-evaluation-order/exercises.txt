@@ -225,10 +225,33 @@ FROM auction
 GROUP BY ended;
 
 
+-- ////////////////
+
+SELECT
+  ended,
+  SUM(final_price) AS sum_price,
+  LAG(SUM(final_price)) OVER(ORDER BY ended)
+FROM auction
+GROUP BY ended
+ORDER BY ended
+
+
 /*
-10. 
+10. For each end day, show the following columns:
+
+ended.
+the sum of views from auctions that ended on that day.
+the sum of views from the previous day (name the column previous_day.
+delta – the difference between the sum of views on that day and on the previous day (name the column delta).
 */
 
+SELECT
+  ended,
+  SUM(views),
+  LAG(SUM(views)) OVER(ORDER BY ended) AS previous_day,
+  SUM(views) - LAG(SUM(views)) OVER(ORDER BY ended) AS delta
+FROM auction
+GROUP BY ended
 
 
 /*
