@@ -174,9 +174,27 @@ FROM ranking
 WHERE rank = 1
 
 
+
+
 /*
-10. 
+10. Divide the sales results for each store into four groups based on the number of transactions and for each store, show the rows in the group with the lowest numbers of transactions: store_id, day, transactions.
 */
+
+WITH ranking AS (
+  SELECT
+  	store_id,
+  	day,
+    transactions,
+  	NTILE(4) OVER(PARTITION BY store_id ORDER BY transactions ASC) rank  	
+  FROM sales
+)
+
+SELECT 
+	store_id,
+  	day,
+    transactions
+FROM ranking
+WHERE rank = 1
 
 
 /*
