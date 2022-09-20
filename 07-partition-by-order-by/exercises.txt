@@ -226,8 +226,19 @@ WHERE day BETWEEN '2016-08-01' AND '2016-08-07'
 
 
 /*
-12. 
+12. Take sales from the period between August 1 and August 10, 2016. For each row, show the following information: store_id, day, number of transactions and the average number of transactions in the respective store in the window frame starting 2 days before and ending 2 days later with respect to the current row.
 */
+
+SELECT
+      store_id,
+      day,
+      transactions,
+      AVG(transactions) OVER(
+    	PARTITION BY store_id
+    	ORDER BY day
+    	ROWS BETWEEN 2 PRECEDING AND 2 FOLLOWING)
+FROM sales
+WHERE day BETWEEN '2016-08-01' AND '2016-08-10'
 
 
 /*
