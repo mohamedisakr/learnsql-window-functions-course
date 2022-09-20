@@ -85,8 +85,16 @@ FROM subscription;
 
 
 /*
-9. 
+9. Show each single rental: id, rental_period, payment_amount, the average amount paid from all the single rentals ever and the ratio of the two last columns.
 */
+
+SELECT
+  id,
+  rental_period, 
+  payment_amount,
+  AVG(payment_amount) OVER(),
+  payment_amount / AVG(payment_amount) OVER()
+FROM single_rental;
 
 
 
