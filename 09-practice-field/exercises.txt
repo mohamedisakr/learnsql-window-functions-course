@@ -60,9 +60,14 @@ FROM giftcard;
 
 
 /*
-7. 
+7. Show each gift card purchased: id, amount_worth and the total number of all gift cards purchased.
 */
 
+SELECT
+  id,
+  amount_worth,
+  COUNT(id) OVER()
+FROM giftcard;
 
 
 /*
