@@ -99,8 +99,15 @@ FROM single_rental;
 
 
 /*
-10. 
+10. For each movie, show its title, editor_rating, genre and the average editor_rating of all movies of the same genre.
 */
+
+SELECT
+  title, 
+  editor_rating, 
+  genre,
+  AVG(editor_rating) OVER(PARTITION BY genre)
+FROM movie;
 
 
 
