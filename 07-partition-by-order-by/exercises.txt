@@ -312,8 +312,18 @@ FROM sales
 
 
 /*
-17. 
+17. For each row, show the following columns: store_id, day, customers and the number of clients in the 5th greatest store in terms of the number of customers on that day.
 */
+
+SELECT
+  store_id,
+  day,
+  customers,
+  NTH_VALUE(customers, 5) 
+  	OVER(PARTITION BY day ORDER BY customers DESC
+    	ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING)
+FROM sales;
+
 
 
 /*
