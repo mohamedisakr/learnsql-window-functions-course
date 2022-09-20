@@ -189,9 +189,15 @@ GROUP BY country
 
 
 /*
-7. 
+7. Group the auctions by category_id and show the category_id and maximal asking price in that category alongside the average maximal price across all categories.
 */
 
+SELECT 
+  category_id, 
+  MAX(asking_price), 
+  AVG(MAX(asking_price)) OVER() 
+FROM auction 
+GROUP BY category_id
 
 
 /*
