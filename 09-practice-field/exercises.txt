@@ -39,9 +39,13 @@ FROM single_rental;
 
 
 /*
-5. 
+5. Select all the information from the subscription table.
+
+Real movie lovers get a subscription instead of single rentals. Each subscription has an id, a length (in days), a start_date, a platform (same as the platforms for single rentals), payment_date, payment_amount and customer_id.
 */
 
+SELECT id, length, start_date, platform, payment_date, payment_amount, customer_id
+FROM subscription;
 
 
 /*
