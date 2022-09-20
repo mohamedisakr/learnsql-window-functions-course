@@ -255,10 +255,26 @@ SELECT
     	ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING)
 FROM sales
 
+-- //////////////
+SELECT
+  country,
+  city,
+  opening_day,
+  LEAD(city, 1, 'NaN') OVER(PARTITION BY country ORDER BY opening_day)
+FROM store;
 
 /*
-14. 
+14. For each store, show the sales in the period between August 5, 2016 and August 10, 2016: store_id, day, number of transactions, number of transactions on the previous day and the difference between these two values.
 */
+
+SELECT
+  store_id,
+  day,
+  transactions,
+  LAG(transactions, 1) OVER(PARTITION BY store_id ORDER BY day),
+  transactions - LAG(transactions, 1) OVER(PARTITION BY store_id ORDER BY day)
+FROM sales
+WHERE day BETWEEN '2016-08-05' AND '2016-08-10'
 
 
 /*
