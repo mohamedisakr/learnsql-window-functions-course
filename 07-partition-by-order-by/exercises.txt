@@ -382,23 +382,3 @@ SELECT
   LAG(paid_repairs, 1) OVER(PARTITION BY phone ORDER BY day),
   paid_repairs - LAG(paid_repairs, 1) OVER(PARTITION BY phone ORDER BY day)
 FROM repairs;
-
-
-/*
-22. 
-*/
-
-
-/*
-23. 
-*/
-
-
-/*
-24. 
-*/
-
-
-/*
-25. 
-*/
