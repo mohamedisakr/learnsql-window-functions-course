@@ -337,8 +337,23 @@ FROM repairs
 
 
 /*
-19. 
+19. For each day, show the following two columns: day and the name of the second most frequently repaired phone on that day. Only take into account free_repairs.
 */
+
+WITH ranking AS 
+(
+  SELECT
+    day,
+    phone,
+    RANK() OVER(PARTITION BY day ORDER BY free_repairs DESC) AS rank
+  FROM repairs
+)
+
+SELECT
+  day,
+  phone
+FROM ranking
+WHERE rank = 2;
 
 
 /*
