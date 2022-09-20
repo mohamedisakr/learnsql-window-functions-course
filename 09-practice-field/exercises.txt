@@ -71,8 +71,16 @@ FROM giftcard;
 
 
 /*
-8. 
+8. Show each subscription: id, length, start_date, payment_amount and the total amount paid for all subscriptions ever.
 */
+
+SELECT
+  id,
+  length,
+  start_date,
+  payment_amount,
+  SUM(payment_amount) OVER()
+FROM subscription;
 
 
 
