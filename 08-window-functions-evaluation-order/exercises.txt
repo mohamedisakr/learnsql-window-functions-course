@@ -16,11 +16,59 @@ ended – the day on which the auction ended and the item was sold.
 SELECT id, category_id, asking_price, final_price, views, participants, country, ended
 FROM auction
 
+-- //////////
 
+SELECT 
+  id, 
+  final_price 
+FROM auction 
+WHERE final_price > AVG(final_price) OVER()
+
+-- ////////
+
+SELECT
+  id,
+  final_price 
+FROM (
+  SELECT
+    id,
+    final_price,
+    AVG(final_price) OVER() AS avg_final_price
+  FROM auction) c
+WHERE final_price > avg_final_price
+
+-- ////////////
+
+SELECT
+  id,
+  final_price 
+FROM (
+  SELECT
+    id,
+    final_price,
+    AVG(final_price) OVER() AS avg_final_price
+  FROM auction) c
+WHERE final_price > avg_final_price
 
 /*
-2. 
+2. Find the id, country and views for those auctions where the number of views was below the average.
 */
+
+WITH cte AS
+(
+  SELECT
+    id,
+    country,
+    views,
+    AVG(views) OVER() AS avg_views
+  FROM auction
+)  
+SELECT
+  	id,
+    	country,
+  	views 
+FROM cTE
+WHERE views < avg_views
 
 
 
