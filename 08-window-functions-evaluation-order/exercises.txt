@@ -296,9 +296,23 @@ FROM book
 
 
 /*
-13. 
+13. Exercise 1 : Divide the books into 4 groups based on their rating. For each group (bucket), show its number (column bucket), the minimal and maximal rating in that bucket.
 */
 
+WITH cte AS
+(
+	SELECT    	  	
+  		rating,
+	    ntile(4) OVER(ORDER BY rating ASC) AS bucket
+  	FROM book
+)
+
+SELECT
+  bucket,
+  MIN(rating),
+  MAX(rating)
+FROM cte
+GROUP BY bucket
 
 
 /*
