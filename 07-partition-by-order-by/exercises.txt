@@ -276,11 +276,27 @@ SELECT
 FROM sales
 WHERE day BETWEEN '2016-08-05' AND '2016-08-10'
 
+-- //////////////
+
+SELECT
+  country,
+  city,
+  rating,
+  FIRST_VALUE(city) OVER(PARTITION BY country ORDER BY rating DESC)
+FROM store;
+
 
 /*
-15. 
+15. Show sales figures in the period between August 1 and August 3: for each store, show the store_id, the day, the revenue and the date with the best revenue in that period as best_revenue_day
 */
 
+SELECT
+  store_id,
+  day,
+  revenue,
+  FIRST_VALUE(day) OVER(PARTITION BY store_id ORDER BY revenue DESC) AS best_revenue_day
+FROM sales
+WHERE day BETWEEN '2016-08-01' AND '2016-08-03'
 
 /*
 16. 
