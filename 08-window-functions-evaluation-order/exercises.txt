@@ -107,10 +107,49 @@ SELECT
 FROM cte 
 WHERE avg_final_price > avg_world_price
 
+-- ///////////////
+
+SELECT 
+  NTILE(4) OVER(ORDER BY views DESC) AS quartile, 
+  MIN(views), 
+  MAX(views) 
+FROM auction 
+GROUP BY NTILE(4) OVER(ORDER BY views DESC);
+
+
+-- //////////////
+
+SELECT
+  quartile,
+  MIN(views),
+  MAX(views)
+FROM
+  (SELECT
+    views,
+    ntile(4) OVER(ORDER BY views DESC) AS quartile
+  FROM auction) c
+GROUP BY quartile;
 
 /*
-4. 
+4. Now, divide all auctions into 6 equal groups based on the asking_price in ascending order. Show columns group_no, minimal, average and maximal value for that group. Sort by the group in ascending order.
 */
+
+WITH cte AS
+(
+	SELECT    	
+  		asking_price,
+    	ntile(6) OVER(ORDER BY asking_price ASC) AS group_no
+  	FROM auction
+)
+
+SELECT
+  group_no,
+  MIN(asking_price),
+  AVG(asking_price),
+  MAX(asking_price)
+FROM cte
+GROUP BY group_no
+ORDER BY group_no ASC;
 
 
 
