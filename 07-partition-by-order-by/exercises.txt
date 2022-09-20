@@ -242,8 +242,18 @@ WHERE day BETWEEN '2016-08-01' AND '2016-08-10'
 
 
 /*
-13. 
+13. For each sales row, show the following information: store_id, day, revenue and the future cash flow receivable by the headquarters (i.e. the total revenue in that store, counted from the current day until the last day in our table).
 */
+
+SELECT
+      store_id,
+      day,
+      revenue,
+      SUM(revenue) OVER(
+    	PARTITION BY store_id
+    	ORDER BY day
+    	ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING)
+FROM sales
 
 
 /*
