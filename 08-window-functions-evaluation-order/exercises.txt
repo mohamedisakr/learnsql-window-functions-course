@@ -254,10 +254,35 @@ FROM auction
 GROUP BY ended
 
 
+-- ////////////////////////
+
+SELECT
+  country,
+  ended,
+  SUM(views) AS views_on_day,
+  SUM(SUM(views)) OVER(PARTITION BY country) AS views_country
+FROM auction
+GROUP BY country, ended
+ORDER BY country, ended
+
+
 /*
-11. 
+11. Group all auctions by the category and end date and show the following columns:
+
+category_id.
+ended.
+the average daily final price as daily_avg_final_price in that category on that day.
+the maximal daily average in that category from any day as daily_max_avg.
 */
 
+SELECT
+  category_id,
+  ended,
+  AVG(final_price) AS daily_avg_final_price ,
+  MAX(AVG(final_price)) OVER(PARTITION BY category_id) AS daily_max_avg
+FROM auction
+GROUP BY category_id, ended
+ORDER BY category_id, ended
 
 
 /*
