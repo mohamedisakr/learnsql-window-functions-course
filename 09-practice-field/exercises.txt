@@ -331,8 +331,16 @@ FROM giftcard
 
 
 /*
-23. 
+23. For each single rental, show the following columns: id, payment_date, payment_amount, the payment_amount of the previous single_rental in terms of the payment_date and the difference between the last two values.
 */
+
+SELECT
+	id,
+    payment_date,
+    payment_amount,
+    LAG(payment_amount, 1) OVER (ORDER BY payment_date),
+    payment_amount - LAG(payment_amount, 1) OVER (ORDER BY payment_date)
+FROM single_rental 
 
 
 
