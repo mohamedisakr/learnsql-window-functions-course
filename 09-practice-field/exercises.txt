@@ -345,8 +345,25 @@ FROM single_rental
 
 
 /*
-24. 
+24. For each rental date, show the rental_date, the sum of payment amounts (column name payment_amounts) from single_rentals on that day, the sum of payment_amounts on the previous day and the difference between these two values.
 */
+
+
+WITH stat_amount AS 
+(
+  SELECT
+      rental_date,
+      SUM(payment_amount) AS payment_amounts
+  FROM single_rental
+  GROUP BY rental_date
+)
+
+SELECT 
+	rental_date, 
+    payment_amounts, 
+    LAG(payment_amounts, 1) OVER (ORDER BY rental_date),
+    payment_amounts - LAG(payment_amounts, 1) OVER (ORDER BY rental_date) difference 
+FROM stat_amount
 
 
 
@@ -354,5 +371,18 @@ FROM single_rental
 25. 
 */
 
-
+-- old statment
+/*
+SELECT 
+	c.first_name,
+    c.last_name,
+    SUM(r.payment_amount) AS sum_of_payments,
+    DENSE_RANK () OVER ( 
+		PARTITION BY c.id
+		ORDER BY r.payment_amount DESC
+	) price_rank 
+FROM customer c JOIN single_rental r
+	ON c.id = customer_id
+GROUP BY c.id, c.first_name, c.last_name, r.payment_amount
+*/
 
