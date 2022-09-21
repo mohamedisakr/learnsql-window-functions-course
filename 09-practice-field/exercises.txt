@@ -368,7 +368,7 @@ FROM stat_amount
 
 
 /*
-25. 
+25. For each customer, show the following information: first_name, last_name, the sum of payments (AS sum_of_payments) for all single rentals and the sum of payments of the median customer in terms of the sum of payments (since there are 7 customers, pick the 4th customer as the median).
 */
 
 SELECT 
@@ -382,4 +382,27 @@ SELECT
 FROM customer c JOIN single_rental r
 	ON c.id = customer_id
 GROUP BY c.first_name, c.last_name;
+
+-- Remember the previous part, part 7? This is where we combined ORDER BY with PARTITION BY:
+
+/*
+SELECT
+  title,
+  release_year,
+  LEAD(title) OVER(PARTITION BY genre ORDER BY release_year)
+FROM movie;
+*/
+
+-- In the above example, the last column will show the next movie that was released with the same genre.
+
+/*
+26. For each movie, show its title, genre, editor_rating and its rank based on editor_rating for all the movies in the same genre.
+*/
+
+SELECT
+  title,
+  genre,
+  editor_rating,
+  RANK() OVER(PARTITION BY genre ORDER BY editor_rating DESC)
+FROM movie;
 
