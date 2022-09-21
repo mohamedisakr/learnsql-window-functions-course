@@ -308,11 +308,26 @@ SELECT
 FROM single_rental r JOIN movie m
 	ON r.movie_id = m.id
 
-
+-- //////////////
 /*
-22. 
+SELECT
+  id,
+  rating,
+  LAG(rating) OVER(ORDER BY id)
+FROM review;
+The example above shows the rating given in each review and the rating given in the previous review.
 */
 
+/*
+22. For each giftcard, show its amount_worth, payment_amount and two more columns: the payment_amount of the first and last giftcards purchased in terms of the payment_date.
+*/
+
+SELECT
+  amount_worth,
+  payment_amount,
+  FIRST_VALUE(payment_amount) OVER(ORDER BY payment_date),
+  LAST_VALUE(payment_amount) OVER(ORDER BY payment_date ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING)
+FROM giftcard
 
 
 /*
