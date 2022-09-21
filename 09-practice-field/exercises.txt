@@ -184,9 +184,16 @@ FROM movie
 
 
 /*
-15. 
+15. Rank single_rentals in accordance with the price paid for them. For each single_rental, show the movie title, rental_period, payment_amount and the rank. Multiple single_rentals can share the same rank, the highest amount should have rank = 1 and gaps in numbering are allowed, too.
 */
 
+SELECT
+    m.title,
+    r.rental_period, 
+    r.payment_amount,
+    RANK() OVER(ORDER BY r.payment_amount DESC) AS rank
+FROM single_rental r JOIN movie m
+	ON r.movie_id = m.id
 
 
 /*
