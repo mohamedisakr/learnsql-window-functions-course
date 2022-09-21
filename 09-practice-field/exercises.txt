@@ -433,7 +433,16 @@ FROM review r JOIN movie m
 GROUP BY m.title, m.genre
 
 
+/* 
+29. For each platform, show the following columns: platform, sum of subscription payments for that platform and its rank based on that sum (the platform with the highest sum should get the rank of 1).
+*/
 
+SELECT 
+	platform,
+    SUM(payment_amount),
+    RANK () OVER (ORDER BY SUM(payment_amount) DESC)
+FROM subscription 
+GROUP BY platform
 
 
 
