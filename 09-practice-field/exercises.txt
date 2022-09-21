@@ -220,8 +220,17 @@ WHERE rank = 2;
 
 
 /*
-17. 
+17. For each single rental, show the rental_date, the title of the movie rented, its genre, the payment_amount and the rank of the rental in terms of the price paid (the most expensive rental should have rank = 1). The ranking should be created separately for each movie genre. Allow the same rank for multiple rows and allow gaps in numbering too.
 */
+
+SELECT
+	r.rental_date,
+    m.title,
+    m.genre,
+    r.payment_amount,
+    RANK() OVER(PARTITION BY m.genre ORDER BY r.payment_amount DESC) AS rank
+FROM single_rental r JOIN movie m
+	ON r.movie_id = m.id
 
 
 
