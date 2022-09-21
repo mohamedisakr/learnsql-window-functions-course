@@ -418,3 +418,22 @@ SELECT
 FROM review r JOIN movie m
 	ON r.movie_id = m.id
 
+
+/*
+28. For each movie, show the following information: title, genre, average user rating for that movie and its rank in the respective genre based on that average rating in descending order (so that the best movies will be shown first).
+*/
+
+SELECT
+  m.title,
+  m.genre,
+  AVG(r.rating),
+  RANK () OVER (PARTITION BY m.genre ORDER BY AVG(r.rating) DESC)
+FROM review r JOIN movie m
+	ON r.movie_id = m.id
+GROUP BY m.title, m.genre
+
+
+
+
+
+
