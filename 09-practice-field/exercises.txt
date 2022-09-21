@@ -155,11 +155,32 @@ FROM customer c JOIN single_rental r
 	ON c.id = r.customer_id
 
 
-
+------------------ Take a look at this example:
 /*
-14. 
+WITH ranking AS
+  (SELECT
+    title,
+    RANK() OVER(ORDER BY editor_rating DESC) AS rank
+  FROM movie)
+
+SELECT title
+FROM ranking
+WHERE rank = 2;
+
+In the above example, we show the title of the second best movie in terms of the editor_rating.
 */
 
+
+/*
+14. For each movie, show the following information: title, release_year, editor_rating and the rank based on editor_rating. The movie with the highest editor_rating should have rank = 1. The same rank values are possible for multiple rows, but don't leave gaps in numbering.
+*/
+
+SELECT
+    title,
+    release_year, 
+    editor_rating,
+    DENSE_RANK() OVER(ORDER BY editor_rating DESC)
+FROM movie
 
 
 /*
