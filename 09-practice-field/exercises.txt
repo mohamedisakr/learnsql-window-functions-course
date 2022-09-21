@@ -197,9 +197,26 @@ FROM single_rental r JOIN movie m
 
 
 /*
-16. 
+16. Show the first and last name of the customer who bought the second most recent giftcard along with the date when the payment took place. Assume that an individual rank is assigned for each giftcard purchase.
 */
 
+WITH ranking AS
+(
+  SELECT 
+	c.first_name,
+    c.last_name,
+  	g.payment_date,
+	DENSE_RANK() OVER(ORDER BY g.payment_date DESC) AS rank
+  FROM customer c JOIN giftcard g
+	ON c.id = g.customer_id
+)
+
+SELECT 
+	first_name,
+    last_name,
+    payment_date
+FROM ranking
+WHERE rank = 2;
 
 
 /*
