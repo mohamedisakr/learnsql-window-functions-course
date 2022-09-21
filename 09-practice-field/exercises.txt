@@ -406,3 +406,15 @@ SELECT
   RANK() OVER(PARTITION BY genre ORDER BY editor_rating DESC)
 FROM movie;
 
+/*
+27. For each review, show the following information: its id, title of the movie, the rating and the previous rating given by any customer to the same movie when sorted by the id of the reviews.
+*/
+
+SELECT
+  r.id,
+  m.title,
+  r.rating,  
+  LAG(r.rating, 1) OVER (PARTITION BY r.movie_id ORDER BY r.id) 
+FROM review r JOIN movie m
+	ON r.movie_id = m.id
+
