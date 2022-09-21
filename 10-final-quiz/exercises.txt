@@ -1,0 +1,80 @@
+/*
+1. Select all the information from the doctor table.
+
+Each doctor has an id, first and last name as well as their age.
+*/
+
+SELECT 
+    id,
+    first_name,
+    last_name,
+    age
+FROM doctor
+
+
+/*
+2. Select all the information from the procedure table.
+
+Each procedure contains the following information: id, procedure_date, doctor_id, patient_id (we are not going to work with the patient table to make things easier, but the column is still there for completeness), category (like: dermal procedure, gastrointestinal procedure...), name, price and score. The last column is a number from 0 to 100 which comes from procedure evaluation by another colleague at the clinic.
+*/
+
+SELECT 
+	id,
+    procedure_date,
+    doctor_id,
+    patient_id,
+    category,
+    name,
+    price,
+    score
+FROM procedure
+
+
+/*
+3. 
+*/
+
+
+
+/*
+4. 
+*/
+
+
+
+/*
+5. 
+*/
+
+
+
+/*
+6. 
+*/
+
+
+
+/*
+7. 
+*/
+
+
+
+/*
+8. 
+*/
+
+
+
+/*
+9. 
+*/
+
+
+
+/*
+10. 
+*/
+
+
+

@@ -459,6 +459,10 @@ SELECT bucket, MIN(payment_amount), MAX(payment_amount)
 FROM subscription_cohort
 GROUP BY bucket
 
+/*
+31. 
+*/
+
 
 
 
