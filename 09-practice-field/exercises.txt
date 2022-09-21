@@ -293,9 +293,20 @@ FROM subscription;
 
 
 /*
-21. 
+21. For each single rental, show the following information: rental_date, title of the movie rented, genre of the movie, payment_amount and the highest payment_amount for any movie in the same genre rented from the first day up to the current rental_date. Show the last column as highest_amount.
 */
 
+SELECT
+  r.rental_date,
+  m.title,
+  m.genre,
+  r.payment_amount,
+  MAX(r.payment_amount) OVER(
+    PARTITION BY m.genre
+    ORDER BY r.rental_date
+    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS highest_amount
+FROM single_rental r JOIN movie m
+	ON r.movie_id = m.id
 
 
 /*
