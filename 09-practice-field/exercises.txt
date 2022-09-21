@@ -371,18 +371,15 @@ FROM stat_amount
 25. 
 */
 
--- old statment
-/*
 SELECT 
 	c.first_name,
     c.last_name,
     SUM(r.payment_amount) AS sum_of_payments,
-    DENSE_RANK () OVER ( 
-		PARTITION BY c.id
-		ORDER BY r.payment_amount DESC
-	) price_rank 
+    NTH_VALUE(SUM(r.payment_amount), 4) OVER(
+        ORDER BY SUM(r.payment_amount)
+        ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+    )
 FROM customer c JOIN single_rental r
 	ON c.id = customer_id
-GROUP BY c.id, c.first_name, c.last_name, r.payment_amount
-*/
+GROUP BY c.first_name, c.last_name;
 
