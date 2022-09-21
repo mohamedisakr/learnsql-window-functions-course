@@ -277,9 +277,19 @@ FROM single_rental;
 
 
 /*
-20. 
+20. For each subscription, show the following columns: id, length, platform, payment_date, payment_amount and the future cashflows calculated as the total money from all subscriptions starting from the beginning of the payment_date of the current row (i.e. include any other payments on the very same date) until the very end.
 */
 
+SELECT
+  id,
+  length,
+  platform,
+  payment_date,
+  payment_amount,
+  SUM(payment_amount) OVER(
+    ORDER BY payment_date
+    RANGE BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING)
+FROM subscription;
 
 
 /*
