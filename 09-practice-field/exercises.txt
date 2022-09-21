@@ -233,12 +233,32 @@ FROM single_rental r JOIN movie m
 	ON r.movie_id = m.id
 
 
-
+-- //////////////
 /*
-18. 
+SELECT
+  id,
+  payment_date,
+  payment_amount,
+  SUM(payment_amount) OVER(
+    ORDER BY payment_date
+    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+FROM subscription;
+
+-- In the above query, we calculate a running total paid for all subscriptions up to the current row.
 */
 
+/*
+18. For each single rental, show the id, rental_date, payment_amount and the running total of payment_amounts of all rentals from the oldest one (in terms of rental_date) until the current row.
+*/
 
+SELECT
+  id,
+  rental_date,
+  payment_amount,
+  SUM(payment_amount) OVER(
+    ORDER BY rental_date
+    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+FROM single_rental;
 
 /*
 19. 
