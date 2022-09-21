@@ -143,8 +143,16 @@ FROM giftcard;
 
 
 /*
-13. 
+13. For each customer, show the following information: first_name, last_name, the average payment_amount from single rentals by that customer and the average payment_amount from single rentals by any customer from the same country.
 */
+
+SELECT
+  DISTINCT c.first_name,
+  c.last_name,
+  AVG(r.payment_amount) OVER(PARTITION BY c.id), 
+  AVG(r.payment_amount) OVER(PARTITION BY c.country)
+FROM customer c JOIN single_rental r
+	ON c.id = r.customer_id
 
 
 
