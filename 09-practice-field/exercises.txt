@@ -445,4 +445,24 @@ FROM subscription
 GROUP BY platform
 
 
+/*
+30. Divide subscriptions into three groups (buckets) based on the payment_amount. Group the rows based on those buckets. Show the following columns: bucket, minimal payment_amount in that bucket and maximal payment_amount in that bucket.
+*/
+
+WITH subscription_cohort AS
+( 	
+	SELECT	payment_amount,	NTILE(3) OVER(ORDER BY payment_amount) AS bucket
+	FROM subscription
+)
+
+SELECT bucket, MIN(payment_amount), MAX(payment_amount)
+FROM subscription_cohort
+GROUP BY bucket
+
+
+
+
+
+
+
 
