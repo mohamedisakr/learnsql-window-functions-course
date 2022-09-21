@@ -261,9 +261,19 @@ SELECT
 FROM single_rental;
 
 /*
-19. 
+19. For each single rental, show its id, rental_date, platform, payment_date, payment_amount and the average payment amount calculated by taking into account the previous two rows, the current row and the next two rows when sorted by the payment_date.
 */
 
+SELECT
+  id,
+  rental_date,
+  platform,
+  payment_date,
+  payment_amount,
+  AVG(payment_amount) OVER(
+    ORDER BY payment_date
+    ROWS between 2 PRECEDING and 2 FOLLOWING)
+FROM single_rental;
 
 
 /*
