@@ -142,8 +142,27 @@ FROM procedure
 
 
 /*
-10. 
+10. For each procedure, show the following information: procedure_date, name, price, the procedure_date of the newest procedure in the same category together with its price. Show the last two colums as most_recent_date and most_recent_price.
 */
 
+SELECT
+  procedure_date,
+  name,
+  price,
+  LAST_VALUE(procedure_date) OVER(
+    PARTITION BY category
+    ORDER BY procedure_date
+    ROWS BETWEEN UNBOUNDED PRECEDING
+      AND UNBOUNDED FOLLOWING) AS most_recent_date,
+  LAST_VALUE(price) OVER(
+    PARTITION BY category
+    ORDER BY procedure_date
+    ROWS BETWEEN UNBOUNDED PRECEDING
+      AND UNBOUNDED FOLLOWING) AS most_recent_price
+FROM procedure;
 
+
+/*
+11. 
+*/
 
