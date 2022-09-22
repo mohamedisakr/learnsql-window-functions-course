@@ -122,14 +122,23 @@ SELECT
     patient_id,
     name,
     price,
-    SUM(price) OVER(ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+    SUM(price) OVER(ORDER BY procedure_date RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
 FROM procedure
 
 
 /*
-9. 
+9. For each procedure, show the following information: id, procedure_date, name, price, price of the previous procedure 
+(in terms of the id) and the difference between these two values. Name the last two columns previous_price and difference.
 */
 
+SELECT 
+	id,
+	procedure_date,
+	name,
+	price,
+	LAG(price, 1) OVER(ORDER BY id) AS previous_price,
+	price - LAG(price, 1) OVER(ORDER BY id) AS difference
+FROM procedure
 
 
 /*
