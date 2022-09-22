@@ -93,8 +93,20 @@ WHERE rank = 3
 
 
 /*
-7. 
+7. For each procedure, show the following information: procedure_date, doctor_id, category, name, score and the average score from the procedures in the same category which are included in the following window frame: two previous rows, current row, three following rows in terms of the procedure date
 */
+
+SELECT 
+	procedure_date,
+    doctor_id,
+    category,
+    name,
+    score,
+    AVG(score) OVER(
+      	PARTITION BY category
+    	ORDER BY procedure_date
+    	ROWS between 2 PRECEDING and 3 FOLLOWING)
+FROM procedure
 
 
 
