@@ -111,9 +111,19 @@ FROM procedure
 
 
 /*
-8. 
+8. For each procedure, show the following information: procedure_date, category, doctor_id, patient_id, name, price and
+the total sum of prices from all procedures from the first day until the end of the current day.
 */
 
+SELECT 
+	procedure_date,
+    category,
+    doctor_id,
+    patient_id,
+    name,
+    price,
+    SUM(price) OVER(ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+FROM procedure
 
 
 /*
