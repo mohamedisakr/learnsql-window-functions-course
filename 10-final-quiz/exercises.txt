@@ -163,6 +163,22 @@ FROM procedure;
 
 
 /*
-11. 
+11. For each procedure, show the name, score, price, category, the average price in its category (as avg_price), the 
+average score in its category (as avg_score) and its rank in the category based on its score (procedure with the highest
+score should get rank 1). Multiple procedures may share the same rank, but don't allow gaps in numbering.
 */
 
+SELECT
+  name,
+  score,
+  price,
+  category,
+  AVG(price) OVER(PARTITION BY category) avg_price,
+  AVG(score) OVER(PARTITION BY category) avg_score,
+  DENSE_RANK() OVER(PARTITION BY category ORDER BY score DESC)
+FROM procedure;
+
+
+/*
+12. 
+*/
