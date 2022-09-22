@@ -180,5 +180,23 @@ FROM procedure;
 
 
 /*
-12. 
+12. For each procedure, show the following information: procedure_date, name, price, category, score, the price of the best procedure (in terms of the score) from the same category (column best_procedure) and the difference between price and best_procedure (column difference).
 */
+
+SELECT
+  procedure_date,
+  name,
+  price,
+  category,
+  score,
+  LAST_VALUE(price) OVER(
+    PARTITION BY category
+    ORDER BY score
+    ROWS BETWEEN UNBOUNDED PRECEDING
+      AND UNBOUNDED FOLLOWING) AS best_procedure,
+	price - LAST_VALUE(price) OVER(
+    			PARTITION BY category
+    			ORDER BY score
+    			ROWS BETWEEN UNBOUNDED PRECEDING
+      			AND UNBOUNDED FOLLOWING) AS difference
+FROM procedure;
