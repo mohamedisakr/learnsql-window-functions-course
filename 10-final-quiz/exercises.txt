@@ -31,20 +31,33 @@ FROM procedure
 
 
 /*
-3. 
+3. For each doctor, show first_name, last_name, age and the average age of all doctors.
 */
 
+SELECT 
+	first_name, 
+    last_name, 
+    age,
+    AVG(age) OVER()
+FROM doctor
 
 
 /*
-4. 
+4. For each procedure, show its id, category, price and the total sum of prices from all procedures in the same category.
 */
 
+SELECT 
+    id,
+    category,
+    price,
+    SUM(price) OVER(PARTITION BY category)
+FROM procedure
 
 
 /*
-5. 
+5. For each procedure, show its name, the first and last name of the doctor, the score and the rank of the procedure in its category based on its score. The best procedure should get rank = 1. Allow multiple procedures with the same rank and gaps in numbering.
 */
+
 
 
 
