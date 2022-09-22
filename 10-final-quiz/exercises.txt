@@ -200,3 +200,33 @@ SELECT
     			ROWS BETWEEN UNBOUNDED PRECEDING
       			AND UNBOUNDED FOLLOWING) AS difference
 FROM procedure;
+
+
+/*
+13. Find out which doctor is the best for each procedure.
+
+For each procedure select procedure name and the first and last name of all doctors who got high scores (higher than or 
+equal to average score for this procedure) the most often (rank = 1).
+*/
+
+
+WITH cte AS (
+  SELECT
+    name,
+    first_name,
+    last_name,
+    COUNT(*) c,
+    RANK() OVER(PARTITION BY name ORDER BY count(*) DESC) AS rank
+  FROM procedure p 
+  JOIN doctor d
+    ON p.doctor_id = d.id
+  WHERE score >= (SELECT avg(score) FROM procedure pl WHERE pl.name = p.name)
+  GROUP BY name, first_name, last_name
+)
+
+SELECT 
+  name,
+  first_name,
+  last_name
+FROM cte
+WHERE rank = 1
