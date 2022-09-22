@@ -58,7 +58,14 @@ FROM procedure
 5. For each procedure, show its name, the first and last name of the doctor, the score and the rank of the procedure in its category based on its score. The best procedure should get rank = 1. Allow multiple procedures with the same rank and gaps in numbering.
 */
 
-
+SELECT 
+	P.name,
+    d.first_name,
+    d.last_name,
+    p.score,
+    RANK() OVER(PARTITION BY category ORDER BY p.score DESC)
+FROM procedure p JOIN doctor d
+	ON p.doctor_id = d.id
 
 
 /*
