@@ -69,9 +69,27 @@ FROM procedure p JOIN doctor d
 
 
 /*
-6. 
+6. For the third most expensive procedure ever, show the following information: doctor_id, name, procedure_date and price.
 */
 
+WITH most_expensive_procedure AS
+(
+	SELECT 
+      doctor_id,
+      name,
+      procedure_date,
+  	  price,
+      DENSE_RANK() OVER(ORDER BY price DESC) AS rank
+	FROM procedure
+)
+
+SELECT 
+      doctor_id,
+      name,
+      procedure_date,
+  	  price    
+FROM most_expensive_procedure
+WHERE rank = 3
 
 
 /*
